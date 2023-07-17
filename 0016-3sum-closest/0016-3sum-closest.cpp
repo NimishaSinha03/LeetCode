@@ -1,0 +1,45 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        int s=nums[0]+nums[1]+nums[2];
+        for(int i=0;i<nums.size()-1;i++){
+            int j=i+1,k=nums.size()-1;
+            while(j<k){
+                int sum=nums[i]+nums[j]+nums[k];
+                // int diff=abs(target-sum);
+                if(abs(sum-target)<abs(s-target))s=sum;
+                if(sum<target)j++;
+                else k--;
+                
+            }
+        }
+        return s;
+    }
+};
+// class Solution {
+// public:
+//     int threeSumClosest(vector<int>& nums, int target) {
+//         sort(nums.begin(),nums.end());
+//         int nearestsum=nums[0]+nums[1]+nums[2];
+//         for(int i=0;i<nums.size()-1;i++){
+         
+//             int start=i+1;
+//             int end=nums.size()-1;
+
+//             while(start<end){
+//                 int currentsum =nums[start]+nums[end]+nums[i];
+//                  if(abs(currentsum-target)<abs(nearestsum-target)){
+//                         nearestsum=currentsum;
+//                     } 
+//                 if(currentsum<target){
+//                     start++;
+//                 } else {
+//                     end--;
+//                 }
+//             }
+          
+//         }
+//         return nearestsum;
+//     }
+// };
