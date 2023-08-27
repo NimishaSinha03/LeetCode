@@ -15,13 +15,13 @@ public:
             fast=fast->next;
             slow=slow->next;
             if(fast)fast=fast->next;
-            // same as detecting cycle, ab set fast to head, and move slow and fast ointers by 1(same pace), and return fast
+            // same as detecting cycle, ab set fast to head, and move slow and fast ointers by 1(same pace), and return fast/slow
             if(slow==fast){fast=head;
             while(fast!=slow){
                 fast=fast->next;
                 slow=slow->next;
             }
-            return fast;
+            return slow;
         }}
         return NULL;
     }
