@@ -5,14 +5,15 @@ public:
         for(int i=0;i<nums.size();i++){
             mp[nums[i]]++;
         }
-        vector<pair<int,int>>count;
+        priority_queue<pair<int,int>> count;
         for(auto j:mp){
-            count.push_back({j.second,j.first});
+            count.push({j.second,j.first});
         }
-        sort(count.rbegin(),count.rend());
+        // sort(count.rbegin(),count.rend());
         vector<int>ans;
-        for(int i=0;i<k;i++){
-            ans.push_back(count[i].second);
+        while(k--){
+            ans.push_back(count.top().second);
+            count.pop();
         }
         return ans;
     }
