@@ -1,41 +1,21 @@
 class Solution {
 public:
-    bool isSafe(int col, int row, vector<string>&board, int n){
-        int x=row;
-        int y=col;
-        while(x>=0&&y>=0){
-            if(board[x][y]=='Q')return false;
-            x--;
-            y--;
-        }
-        x=row;
-        y=col;
-        while(y>=0){
-            if(board[x][y]=='Q')return false;
-            y--;
-        }
-        x = row;
-        y = col;
-        while(x<n&&y>=0){
-            if(board[x][y]=='Q')return false;
-            x++;
-            y--;
-        }
-        // roww=row;
-        // coll=col;
-        return true;
-    }
-    
-    void solve(int col, vector<string>&board, vector<vector<string>>&ans, int n){
+    void solve(vector<vector<string>>&ans, vector<string>& board, int n,int col, vector<int>&side, vector<int>&upperd, vector<int>&lowerd){
         if(col==n){
             ans.push_back(board);
             return;
         }
         for(int row=0;row<n;row++){
-            if(isSafe(col, row, board , n)){
+            if(side[row]==0&&lowerd[col+row]==0&&upperd[n-1+col-row]==0){
                 board[row][col]='Q';
-                solve(col+1,board, ans, n);
+                side[row]=1;
+                lowerd[col+row]=1;
+                upperd[n-1+col-row]=1;
+                solve(ans, board, n, col+1,side, upperd, lowerd);
                 board[row][col]='.';
+                side[row]=0;
+                lowerd[col+row]=0;
+                upperd[n-1+col-row]=0;
             }
         }
     }
@@ -46,7 +26,8 @@ public:
         for(int i=0;i<n;i++){
             board[i]=s;
         }
-        solve(0, board, ans , n);
+        vector<int>side(n,0),upperd(2*n-1,0),lowerd(2*n-1,0);
+        solve(ans, board, n, 0, side, upperd, lowerd);
         return ans;
     }
 };
