@@ -1,20 +1,19 @@
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        int i=0,j=0,ind=0;
+        int a=0,b=0, count=0;
         int h=haystack.size();
         int n=needle.size();
-        while(i<h&&j<n){
-            ind=i;
-            while(i<h&&j<n&&haystack[i]==needle[j]){
-                i++;
-                j++;
-            }
-            if(j>=n)return ind;
-            else j=0;
-            i=ind+1;
+        while(a<h&&b<n){
+                count=a;
+                while(a<h&&b<n&&haystack[a]==needle[b]){
+                    a++;
+                    b++;
+                }
+            if(b>=n)return count;
+            else b=0;
+            a=count+1;
         }
-        // return ind;
         return -1;
     }
 };
