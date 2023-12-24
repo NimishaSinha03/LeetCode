@@ -1,15 +1,16 @@
 class Solution {
 public:
     string intToRoman(int num) {
-        int normal[]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
-        string roman[]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
-        string res;
-        for(int i=0;i<13;i++){
-            while(num>=normal[i]){
-                res.append(roman[i]);
-                num-=normal[i];
+        string ans ="";
+        vector<int>numb={1,4,5,9,10,40,50,90,100,400,500,900,1000};
+        vector<string>rom={"I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"
+                };
+        for(int i=12;i>=0;i--){
+            while(num>=numb[i]){
+                ans+=rom[i];
+                num-=numb[i];
             }
         }
-        return res;
+        return ans;
     }
 };
