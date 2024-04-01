@@ -1,15 +1,14 @@
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        // remove last ke spaces
-        int i=0,j=s.length()-1;
-        while(j>=0&&s[j]==' '){
-            j--;
-        }
-        while(j>=0&&s[j]!=' '){
-            i++;
-            j--;
-        }
-        return i;
+        int ans=0,i=s.size()-1;
+        
+            while(i>=0&&s[i]==' ')i--;
+            while(i>=0&&s[i]!=' '){
+                i--;
+                ans++;
+            }
+        
+        return ans;
     }
 };
