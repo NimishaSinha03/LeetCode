@@ -1,16 +1,14 @@
 class Solution {
 public:
     vector<vector<int>> generate(int n) {
-        vector<vector<int>>ans;
+        vector<vector<int>>v;
         for(int i=0;i<n;i++){
-            ans.push_back(vector<int>(i+1,1));
+            v.push_back(vector<int>(i+1,1));
         }
         for(int i=2;i<n;i++){
-            for(int j=1;j<ans[i].size()-1;j++){
-                ans[i][j]=ans[i-1][j-1]+ans[i-1][j];
+            for(int j=1;j<v[i].size()-1;j++)
+                v[i][j]=v[i-1][j-1]+v[i-1][j];
             }
-        }
-        return ans;
-        
+        return v;
     }
 };
