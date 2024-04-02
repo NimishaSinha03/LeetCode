@@ -1,9 +1,9 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
         vector<vector<int>>ans;
         set<vector<int>>s;
+        sort(nums.begin(),nums.end());
         for(int i=0;i<nums.size();i++){
             int j=i+1;
             int k=nums.size()-1;
@@ -14,9 +14,7 @@ public:
                 else j++;
             }
         }
-        for(auto it:s){
-            ans.push_back(it);
-        }
+        for(auto it:s)ans.push_back(it);
         return ans;
     }
 };
