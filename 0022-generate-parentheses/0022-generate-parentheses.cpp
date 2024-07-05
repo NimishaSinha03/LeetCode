@@ -1,19 +1,16 @@
 class Solution {
-    
 public:
-    vector<string>ans;
-    void rec(int open,int close,string s){
-        if(open==0&&close==0){ans.push_back(s);
-        return;}
-        if(open<close){
-            rec(open, close-1,s+')');
-        }
-        if(open>0){
-            rec(open-1,close,s+'(');
-        }
+    void f(vector<string>&ans, int n,int open, int close, string s){
+    if(open==n&&close==n){
+        ans.push_back(s);
+        return;
+    }
+       if(open<n) f(ans,n,open+1,close,s+"(");
+       if(close<open)f(ans,n,open,close+1,s+")");
     }
     vector<string> generateParenthesis(int n) {
-        rec(n,n,"");
+        vector<string>ans;
+        f(ans,n,0,0,"");
         return ans;
     }
 };
